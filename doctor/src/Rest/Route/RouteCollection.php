@@ -10,9 +10,11 @@ final class RouteCollection implements \Countable, \IteratorAggregate
 	private array $routes = [];
 
 
-	public function add(string $path, string $controllerName): void
+	public function add(string $path, string $controllerName): self
 	{
 		$this->routes[$path] = new Route($path, $controllerName);
+
+		return $this;
 	}
 
 

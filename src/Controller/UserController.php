@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Route;
+namespace App\Controller;
 
 use Doctor\Rest\Controller\Controller;
 use Doctor\Rest\Response\JsonResponse;

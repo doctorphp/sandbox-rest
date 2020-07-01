@@ -10,4 +10,4 @@ use Doctor\Rest\Application;
  */
 $container = require __DIR__ . '/../src/bootstrap.php';
 
-$container->get(Application::class);
+$container->get(Application::class)->run();

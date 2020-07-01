@@ -8,6 +8,8 @@ use Doctor\Rest\Request\RequestMethod;
 use Doctor\Rest\Route\Exception\InvalidMethodNameException;
 use Doctor\Rest\Route\Exception\MethodNotAllowedException;
 use Doctor\Rest\Route\Exception\RouteNotFoundException;
+use Doctor\Rest\Route\RouteCollection;
+use FastRoute;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use Psr\Http\Message\RequestInterface;
@@ -15,12 +17,12 @@ use Psr\Http\Message\RequestInterface;
 final class Router
 {
 
-	private RouteFactoryInterface $routeFactory;
+	private RouteCollection $routeCollection;
 
 
-	public function __construct(RouteFactoryInterface $routeFactory)
+	public function __construct(RouteCollection $routeCollection)
 	{
-		$this->routeFactory = $routeFactory;
+		$this->routeCollection = $routeCollection;
 	}
 
 
@@ -31,7 +33,7 @@ final class Router
 	 */
 	public function findMatch(RequestInterface $request): Match
 	{
-		$dispatcher = cachedDispatcher(
+		$dispatcher = FastRoute\cachedDispatcher(
 			function(RouteCollector $routeCollector): void {
 				$this->discoverRoutes($routeCollector);
 			},
@@ -75,12 +77,9 @@ final class Router
 
 	private function discoverRoutes(RouteCollector $routeCollector): void
 	{
-		$routeCollection = new RouteCollection;
-		$this->routeFactory->create($routeCollection);
-
 		$httpMethods = RequestMethod::getAll();
 
-		foreach ($routeCollection as $route) {
+		foreach ($this->routeCollection as $route) {
 			$reflectionClass = new \ReflectionClass($route->getControllerClass());
 
 			foreach ($reflectionClass->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
