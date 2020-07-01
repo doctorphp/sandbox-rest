@@ -12,7 +12,7 @@ $whoops->register();
 
 $builder = new ContainerBuilder;
 
-if (true /* Development env */) {
+if (true /* @todo Development env */) {
 	$containerBuilder->enableCompilation(__DIR__ . '/../cache/di');
 	$containerBuilder->writeProxiesToFile(true, __DIR__ . '/cache/proxies');
 }
