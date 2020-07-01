@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Doctor\Rest\Request;
 
-use Doctor\Rest\Route\Router;
-
 final class RequestMethod
 {
 
@@ -23,7 +21,7 @@ final class RequestMethod
 	/**
 	 * @return Array|string[]
 	 */
-	public function getAll(): array
+	public static function getAll(): array
 	{
 		return [
 			self::GET,

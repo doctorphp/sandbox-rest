@@ -7,5 +7,5 @@ namespace Doctor\Rest\Route;
 interface RouteFactoryInterface
 {
 
-	public function create(RouteCollector $routeCollector): void;
+	public function create(RouteCollection $routeCollection): void;
 }

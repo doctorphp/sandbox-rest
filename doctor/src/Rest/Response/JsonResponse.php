@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Doctor\Rest\Response;
 
-use Doctor\Rest\Route\Router;
-
-abstract class JsonResponse extends Response
+class JsonResponse extends Response
 {
 
 	/**

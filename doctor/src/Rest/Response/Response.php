@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Doctor\Rest\Response;
 
-use Doctor\Rest\Route\Router;
-
 abstract class Response
 {
 
 	private int $httpCode = 200;
+	private ?string $contentType = null;
+
+
+	abstract public function getResponseData(): string;
 
 
 	public function setHttpCode(int $httpCode): void
@@ -24,17 +26,14 @@ abstract class Response
 	}
 
 
-	public function setContentType(string $contentType): void
+	public function setContentType(?string $contentType): void
 	{
 		$this->contentType = $contentType;
 	}
 
 
-	public function getContentType(): string
+	public function getContentType(): ?string
 	{
 		return $this->contentType;
 	}
-
-
-	abstract public function getResponseData(): string;
 }

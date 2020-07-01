@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Doctor\Http;
 
 use Doctor\Http\MissingHttpMethodException\MissingHttpMethodException;
-use Doctor\Rest\Route\Router;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 

@@ -8,15 +8,21 @@ use Doctor\Rest\Controller\Controller;
 use Doctor\Rest\Response\JsonResponse;
 use Doctor\Rest\Response\Response;
 
-final class UserController extends Controller
+final class UsersController extends Controller
 {
 
-	public function get(int $id): Response
+	public function get(): Response
 	{
 		return new JsonResponse([
-			'user' => [
-				'id' => $id,
-				'name' => 'Joe - ' . $id,
+			'users' => [
+				[
+					'id' => 1,
+					'name' => 'John Doe',
+				],
+				[
+					'id' => 2,
+					'name' => 'Fou Pou',
+				],
 			],
 		]);
 	}

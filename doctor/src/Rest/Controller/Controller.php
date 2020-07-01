@@ -7,28 +7,26 @@ namespace Doctor\Rest\Controller;
 use Doctor\Rest\Controller\Exception\InvalidResponseException;
 use Doctor\Rest\Controller\Exception\UndefinedMethodCallException;
 use Doctor\Rest\Response\Response;
-use Doctor\Rest\Route\Router;
 
 abstract class Controller
 {
 
 	/**
-	 * @param string $method
 	 * @theow UndefinedMethodCallException
 	 * @theow InvalidResponseException
 	 */
-	public function run(string $method): Response
+	public function run(string $method, array $params): Response
 	{
 		$method = strtolower($method);
 
 		if (!method_exists($this, $method)) {
-			throw new UndefinedMethodCallException(get_class($this), $method);
+			throw new UndefinedMethodCallException(static::class, $method);
 		}
 
-		$response = call_user_func([$this, $method], []);
+		$response = call_user_func_array([$this, $method], $params);
 
 		if (!$response instanceof Response) {
-			throw new InvalidResponseException(get_class($this), $method);
+			throw new InvalidResponseException(static::class, $method);
 		}
 
 		return $response;

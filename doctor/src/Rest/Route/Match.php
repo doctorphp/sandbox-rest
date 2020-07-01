@@ -8,12 +8,14 @@ final class Match
 {
 
 	private Route $route;
+	private string $method;
 	private array $params;
 
 
-	public function __construct(Route $route, array $params)
+	public function __construct(Route $route, string $method, array $params)
 	{
 		$this->route = $route;
+		$this->method = $method;
 		$this->params = $params;
 	}
 
@@ -24,8 +26,14 @@ final class Match
 	}
 
 
+	public function getMethod(): string
+	{
+		return $this->method;
+	}
+
+
 	public function getParams(): array
 	{
-		return $params;
+		return $this->params;
 	}
 }

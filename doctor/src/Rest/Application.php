@@ -6,6 +6,7 @@ namespace Doctor\Rest;
 
 use DI\Container;
 use Doctor\Rest\Route\Router;
+use Psr\Http\Message\RequestInterface;
 
 class Application
 {
@@ -28,9 +29,11 @@ class Application
 
 	public function run(): void
 	{
-		$controllerClass = $this->router->findRoute($this->request);
+		$match = $this->router->findMatch($this->request);
 
-		$controller = $this->diContainer->get($controllerClass);
-		$response = $controller->run($method, );
+		$controller = $this->diContainer->get($match->getRoute()->getControllerClass());
+		$response = $controller->run($match->getMethod(), $match->getParams());
+
+		echo $response->getResponseData() . PHP_EOL;
 	}
 }
