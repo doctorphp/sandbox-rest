@@ -11,8 +11,9 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $bootstrap = new Bootstrap;
 
-$bootstrap->enableDebugMode();
+//$bootstrap->enableDebugMode();
 
 $bootstrap->addConfigFile(__DIR__ . '/../config/routes.php');
+$bootstrap->setCacheDir(__DIR__ . '/../cache');
 
 return $bootstrap->createContainer();

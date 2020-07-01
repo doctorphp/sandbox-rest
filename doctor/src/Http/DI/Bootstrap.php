@@ -17,6 +17,7 @@ final class Bootstrap
 
 	private ContainerBuilder $containerBuilder;
 	private bool $debugMode = false;
+	private ?string $cacheDir = null;
 
 
 	public function __construct()
@@ -37,6 +38,12 @@ final class Bootstrap
 	}
 
 
+	public function setCacheDir(string $cacheDir): void
+	{
+		$this->cacheDir = $cacheDir;
+	}
+
+
 	public function addConfigFile(string $configFile): void
 	{
 		$this->containerBuilder->addDefinitions($configFile);
@@ -45,9 +52,18 @@ final class Bootstrap
 
 	public function createContainer(): Container
 	{
+		if ($this->cacheDir === null) {
+			throw new \RuntimeException(
+				sprintf(
+					'Please set a cache directory using %s::setCacheDir()',
+					self::class
+				)
+			);
+		}
+
 		if ($this->debugMode === false) {
-			$this->containerBuilder->enableCompilation(__DIR__ . '/../cache/di');
-			$this->containerBuilder->writeProxiesToFile(true, __DIR__ . '/../cache/proxies');
+			$this->containerBuilder->enableCompilation(rtrim($this->cacheDir, '/') . '/di');
+			$this->containerBuilder->writeProxiesToFile(true, rtrim($this->cacheDir, '/') . '/proxies');
 		}
 
 		return $this->containerBuilder->build();

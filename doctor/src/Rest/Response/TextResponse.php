@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctor\Rest\Response;
 
-class JsonResponse extends Response
+class TextResponse extends Response
 {
 
 	/**
@@ -20,12 +20,12 @@ class JsonResponse extends Response
 	{
 		$this->data = $data;
 
-		$this->setContentType('application/json');
+		$this->setContentType('text/plain');
 	}
 
 
 	public function getResponseData(): string
 	{
-		return json_encode($this->data, JSON_THROW_ON_ERROR);
+		return $this->data;
 	}
 }
