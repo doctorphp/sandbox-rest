@@ -76,7 +76,16 @@ final class Router
 				$handler = $routeInfo[1];
 				$vars = $routeInfo[2];
 
-				return new Match(($handler)(), $request->getMethod(), $vars);
+				$routeData = ($handler)();
+
+				return new Match(
+					new Route(
+						$routeData[RouterCache::KEY_PATH],
+						$routeData[RouterCache::KEY_CONTROLLER_CLASS]
+					),
+					$request->getMethod(),
+					$vars
+				);
 
 			default:
 				throw new \UnexpectedValueException;
@@ -88,14 +97,16 @@ final class Router
 	{
 		$httpMethods = RequestMethod::getAll();
 
+		$this->routerCache->clear();
+
 		foreach ($this->routeCollection as $route) {
 			$reflectionClass = new \ReflectionClass($route->getControllerClass());
 
 			foreach ($reflectionClass->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
 				$methodName = $method->name;
-				$methodToUpper = mb_strtoupper($methodName);
+				$httpMethod = mb_strtoupper($methodName);
 
-				if (!in_array($methodToUpper, $httpMethods, true)) {
+				if (!in_array($httpMethod, $httpMethods, true)) {
 					continue;
 				}
 
@@ -107,15 +118,20 @@ final class Router
 					);
 				}
 
-				$routeCollector->addRoute(
-					$methodToUpper,
+				$routeCacheMethod = $this->routerCache->add(
+					$httpMethod,
 					$route->getPath(),
-					/*function() use ($route): Route {
-						return $route;
-					}*/
-					[RouterCache::class, 'route1']
+					$route->getControllerClass()
+				);
+
+				$routeCollector->addRoute(
+					$httpMethod,
+					$route->getPath(),
+					[RouterCache::class, $routeCacheMethod]
 				);
 			}
 		}
+
+		$this->routerCache->store();
 	}
 }

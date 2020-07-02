@@ -11,7 +11,7 @@
       '/users' => 
       array (
         0 => 'Doctor\\Rest\\Route\\RouterCache',
-        1 => 'route1',
+        1 => 'route2',
       ),
     ),
   ),
@@ -29,7 +29,7 @@
             0 => 
             array (
               0 => 'Doctor\\Rest\\Route\\RouterCache',
-              1 => 'route1',
+              1 => 'route3',
             ),
             1 => 
             array (

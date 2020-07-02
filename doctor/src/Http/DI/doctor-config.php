@@ -22,4 +22,7 @@ return [
 			$container->get(RouterCache::class)
 		);
 	},
+	RouterCache::class => function(ContainerInterface $container): RouterCache{
+		return new RouterCache($container->get('cacheDir'));
+	}
 ];
