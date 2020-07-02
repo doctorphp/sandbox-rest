@@ -17,12 +17,22 @@ use Psr\Http\Message\RequestInterface;
 final class Router
 {
 
+	private string $cacheDir;
+	private bool $debugMode;
 	private RouteCollection $routeCollection;
+	private RouterCache $routerCache;
 
 
-	public function __construct(RouteCollection $routeCollection)
-	{
+	public function __construct(
+		string $cacheDir,
+		bool $debugMode,
+		RouteCollection $routeCollection,
+		RouterCache $routerCache
+	) {
+		$this->cacheDir = $cacheDir;
+		$this->debugMode = $debugMode;
 		$this->routeCollection = $routeCollection;
+		$this->routerCache = $routerCache;
 	}
 
 
@@ -38,9 +48,8 @@ final class Router
 				$this->discoverRoutes($routeCollector);
 			},
 			[
-				/* @todo Development env */
-				'cacheFile' => __DIR__ . __DIR__ . '/../cache/route.cache', /* required */
-				'cacheDisabled' => true,
+				'cacheFile' => $this->cacheDir . '/router/CompiledRoutes.php', /* required */
+				'cacheDisabled' => $this->debugMode,
 			]
 		);
 
@@ -101,9 +110,10 @@ final class Router
 				$routeCollector->addRoute(
 					$methodToUpper,
 					$route->getPath(),
-					function() use ($route): Route {
+					/*function() use ($route): Route {
 						return $route;
-					}
+					}*/
+					[RouterCache::class, 'route1']
 				);
 			}
 		}

@@ -28,19 +28,33 @@ final class Bootstrap
 	}
 
 
-	public function enableDebugMode(): void
+	public function setDebugMode(bool $debugMode = true): void
 	{
-		$whoops = new Run;
-		$whoops->pushHandler(new PrettyPageHandler);
-		$whoops->register();
+		if ($debugMode) {
+			$whoops = new Run;
+			$whoops->pushHandler(new PrettyPageHandler);
+			$whoops->register();
+		}
 
-		$this->debugMode = true;
+		$this->debugMode = $debugMode;
 	}
 
 
 	public function setCacheDir(string $cacheDir): void
 	{
-		$this->cacheDir = $cacheDir;
+		$this->cacheDir = rtrim($cacheDir, '/');
+		$routerCacheDir = $this->cacheDir . '/router';
+
+		if (!is_dir($routerCacheDir)) {
+			mkdir($routerCacheDir, 0777, true);
+
+			if (!is_dir($routerCacheDir)) {
+				throw new \RuntimeException(
+					sprintf('Could not created cache directory %s', $routerCacheDir)
+				);
+			}
+		}
+
 	}
 
 
@@ -54,16 +68,18 @@ final class Bootstrap
 	{
 		if ($this->cacheDir === null) {
 			throw new \RuntimeException(
-				sprintf(
-					'Please set a cache directory using %s::setCacheDir()',
-					self::class
-				)
+				sprintf('Please set a cache directory using %s::setCacheDir()', self::class)
 			);
 		}
 
+		$this->containerBuilder->addDefinitions([
+			'cacheDir' => $this->cacheDir,
+			'debugMode' => $this->debugMode,
+		]);
+
 		if ($this->debugMode === false) {
-			$this->containerBuilder->enableCompilation(rtrim($this->cacheDir, '/') . '/di');
-			$this->containerBuilder->writeProxiesToFile(true, rtrim($this->cacheDir, '/') . '/proxies');
+			$this->containerBuilder->enableCompilation($this->cacheDir . '/di');
+			$this->containerBuilder->writeProxiesToFile(true, $this->cacheDir . '/proxies');
 		}
 
 		return $this->containerBuilder->build();
