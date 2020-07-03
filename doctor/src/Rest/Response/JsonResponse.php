@@ -16,9 +16,10 @@ class JsonResponse extends Response
 	/**
 	 * @param mixed $data
 	 */
-	public function __construct($data)
+	public function __construct($data, int $status = ResponseStatus::STATUS_200_OK)
 	{
 		$this->data = $data;
+		$this->status = $status;
 
 		$this->setContentType('application/json');
 	}

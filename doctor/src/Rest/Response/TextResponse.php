@@ -8,17 +8,18 @@ class TextResponse extends Response
 {
 
 	/**
-	 * @var mixed
+	 * @var string
 	 */
 	private $data;
 
 
 	/**
-	 * @param mixed $data
+	 * @param string $data
 	 */
-	public function __construct($data)
+	public function __construct(string $data, int $status = ResponseStatus::STATUS_200_OK)
 	{
 		$this->data = $data;
+		$this->status = $status;
 
 		$this->setContentType('text/plain');
 	}

@@ -7,22 +7,22 @@ namespace Doctor\Rest\Response;
 abstract class Response
 {
 
-	private int $httpCode = 200;
+	private int $status = 200;
 	private ?string $contentType = null;
 
 
 	abstract public function getResponseData(): string;
 
 
-	public function setHttpCode(int $httpCode): void
+	public function setStatus(int $status): void
 	{
-		$this->httpCode = $httpCode;
+		$this->status = $status;
 	}
 
 
-	public function getCode(): int
+	public function getStatus(): int
 	{
-		return $this->httpCode;
+		return $this->status;
 	}
 
 

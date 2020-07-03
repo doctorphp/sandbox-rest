@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Doctor\Http\RequestFactory;
+use Doctor\Rest\Application;
 use Doctor\Rest\Route\RouteCollection;
 use Doctor\Rest\Route\Router;
 use Doctor\Rest\Route\RouterCache;
@@ -14,15 +15,7 @@ return [
 	RequestInterface::class => function(ContainerInterface $container): RequestInterface {
 		return $container->get(RequestFactory::class)->createFromGlobals();
 	},
-	Router::class => function(ContainerInterface $container): Router {
-		return new Router(
-			$container->get('cacheDir'),
-			$container->get('debugMode'),
-			$container->get(RouteCollection::class),
-			$container->get(RouterCache::class)
-		);
-	},
-	RouterCache::class => function(ContainerInterface $container): RouterCache{
-		return new RouterCache($container->get('cacheDir'));
-	}
+	Router::class => DI\autowire()->constructor(DI\get('cacheDir'), DI\get('debugMode')),
+	RouterCache::class => DI\autowire()->constructor(DI\get('cacheDir')),
+	Application::class => DI\autowire()->constructor(DI\get('debugMode')),
 ];
