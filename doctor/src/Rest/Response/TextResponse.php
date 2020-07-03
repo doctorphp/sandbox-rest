@@ -7,15 +7,9 @@ namespace Doctor\Rest\Response;
 class TextResponse extends Response
 {
 
-	/**
-	 * @var string
-	 */
-	private $data;
+	private string $data;
 
 
-	/**
-	 * @param string $data
-	 */
 	public function __construct(string $data, int $status = ResponseStatus::STATUS_200_OK)
 	{
 		$this->data = $data;

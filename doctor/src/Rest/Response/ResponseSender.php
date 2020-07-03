@@ -47,5 +47,7 @@ class ResponseSender
 		while (!$body->eof()) {
 			echo $body->read(1024 * 8);
 		}
+
+		exit(0);
 	}
 }

@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 use Doctor\Http\RequestFactory;
 use Doctor\Rest\Application;
-use Doctor\Rest\Route\RouteCollection;
 use Doctor\Rest\Route\Router;
 use Doctor\Rest\Route\RouterCache;
-use GuzzleHttp\Psr7\Request;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\RequestInterface;
 

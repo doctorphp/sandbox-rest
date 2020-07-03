@@ -6,9 +6,6 @@ namespace Doctor\Http\DI;
 
 use DI\Container;
 use DI\ContainerBuilder;
-use Doctor\Http\MissingHttpMethodException\MissingHttpMethodException;
-use GuzzleHttp\Psr7\Request;
-use Psr\Http\Message\RequestInterface;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -54,7 +51,6 @@ final class Bootstrap
 				);
 			}
 		}
-
 	}
 
 

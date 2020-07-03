@@ -7,8 +7,8 @@ namespace Doctor\Rest\Response;
 abstract class Response
 {
 
-	private int $status = 200;
-	private ?string $contentType = null;
+	protected int $status = 200;
+	protected ?string $contentType = null;
 
 
 	abstract public function getResponseData(): string;

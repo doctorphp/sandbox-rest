@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Doctor\Rest;
 
 use DI\Container;
-use Doctor\Rest\Response\Response;
 use Doctor\Rest\Response\ResponseSender;
 use Doctor\Rest\Response\ResponseStatus;
 use Doctor\Rest\Response\TextResponse;
+use Doctor\Rest\Route\Exception\MethodNotAllowedException;
 use Doctor\Rest\Route\Exception\RouteNotFoundException;
 use Doctor\Rest\Route\Router;
 use Psr\Http\Message\RequestInterface;
@@ -42,8 +42,10 @@ class Application
 	{
 		try {
 			$match = $this->router->findMatch($this->request);
-		} catch (InvalidMethodNameException $e) {
+		} catch (\Throwable $e) {
 			$this->handleError($e);
+
+			return;
 		}
 
 		$controller = $this->diContainer->get($match->getRoute()->getControllerClass());
@@ -53,27 +55,24 @@ class Application
 	}
 
 
-	/**
-	 * @param \Exception
-	 */
-	protected function handleError(\Exception $e): void
+	protected function handleError(\Throwable $e): void
 	{
 		if ($this->debugMode) {
 			throw $e;
 		}
 
-		if ($e instanceof MethodNotAllowedException) {
+		if ($e instanceof RouteNotFoundException) {
 			$this->responseSender->send(
 				new TextResponse(
-					'Method Not Allowed',
-					ResponseStatus::STATUS_405_METHOD_NOT_ALLOWED
+					'Not Found',
+					ResponseStatus::STATUS_404_NOT_FOUND
 				)
 			);
 		} elseif ($e instanceof MethodNotAllowedException) {
 			$this->responseSender->send(
 				new TextResponse(
-					'Not Found',
-					ResponseStatus::STATUS_404_NOT_FOUND
+					'Method Not Allowed',
+					ResponseStatus::STATUS_405_METHOD_NOT_ALLOWED
 				)
 			);
 		}

@@ -8,7 +8,6 @@ use Doctor\Rest\Request\RequestMethod;
 use Doctor\Rest\Route\Exception\InvalidMethodNameException;
 use Doctor\Rest\Route\Exception\MethodNotAllowedException;
 use Doctor\Rest\Route\Exception\RouteNotFoundException;
-use Doctor\Rest\Route\RouteCollection;
 use FastRoute;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;

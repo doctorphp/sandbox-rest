@@ -4,16 +4,6 @@ declare(strict_types=1);
 
 namespace Doctor\Rest\Route;
 
-use Doctor\Rest\Request\RequestMethod;
-use Doctor\Rest\Route\Exception\InvalidMethodNameException;
-use Doctor\Rest\Route\Exception\MethodNotAllowedException;
-use Doctor\Rest\Route\Exception\RouteNotFoundException;
-use Doctor\Rest\Route\RouteCollection;
-use FastRoute;
-use FastRoute\Dispatcher;
-use FastRoute\RouteCollector;
-use Psr\Http\Message\RequestInterface;
-
 final class RouterCache
 {
 
@@ -22,8 +12,8 @@ final class RouterCache
 	public const KEY_CONTROLLER_CLASS = 2;
 
 	private string $cacheFile;
-	private static array $data = [];
 	private int $routeNumber = 0;
+	private static array $data = [];
 
 
 	public function __construct(string $cacheDir)
