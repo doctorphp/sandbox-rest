@@ -1,8 +1,16 @@
 {
 	"name": "doctor/sandbox-rest",
-	"description": "",
-	"license": "MIT",
+	"description": "Doctor HTTP REST sandbox",
 	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Pavel Janda",
+			"email": "me@paveljanda.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
 			"App\\": "src/"
@@ -17,6 +25,5 @@
 	"require-dev": {
 		"gamee/php-code-checker-rules": "^2.0",
 		"symfony/var-dumper": "^5.1"
-	},
-	"minimum-stability": "stable"
+	}
 }
