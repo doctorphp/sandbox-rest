@@ -23,7 +23,6 @@
 		"php-di/php-di": "^6.2"
 	},
 	"require-dev": {
-		"gamee/php-code-checker-rules": "^2.0",
-		"symfony/var-dumper": "^5.1"
+		"gamee/php-code-checker-rules": "^2.0"
 	}
 }
