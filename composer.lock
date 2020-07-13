@@ -4,8 +4,132 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5be823dee75ba7067af7d40d0dfad7a3",
+    "content-hash": "a3c623133ef088dcd3daad79d7cbdab2",
     "packages": [
+        {
+            "name": "doctor/di-psr",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctorphp/di-psr.git",
+                "reference": "9fcece98beaafee8bed51d0da9dd5cf884a8f58a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctorphp/di-psr/zipball/9fcece98beaafee8bed51d0da9dd5cf884a8f58a",
+                "reference": "9fcece98beaafee8bed51d0da9dd5cf884a8f58a",
+                "shasum": ""
+            },
+            "require": {
+                "doctor/http": "dev-master",
+                "doctor/rest": "dev-master",
+                "filp/whoops": "^2.7",
+                "php-di/php-di": "^6.2",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "gamee/php-code-checker-rules": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctor\\DI\\PSR\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Janda",
+                    "email": "me@paveljanda.com"
+                }
+            ],
+            "description": "Doctor DI with PSR-11 implementation (PHP-DI)",
+            "time": "2020-07-12T21:15:55+00:00"
+        },
+        {
+            "name": "doctor/http",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctorphp/http.git",
+                "reference": "83aa46b5832b0a5707b3c5b8d6df9fc8ad4a148f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctorphp/http/zipball/83aa46b5832b0a5707b3c5b8d6df9fc8ad4a148f",
+                "reference": "83aa46b5832b0a5707b3c5b8d6df9fc8ad4a148f",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.6",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "gamee/php-code-checker-rules": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctor\\Http\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Janda",
+                    "email": "me@paveljanda.com"
+                }
+            ],
+            "description": "Doctor HTTP layer",
+            "time": "2020-07-12T21:08:26+00:00"
+        },
+        {
+            "name": "doctor/rest",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctorphp/rest.git",
+                "reference": "4b35cf0e37d66aead4b1eca8ec986449170e689c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctorphp/rest/zipball/4b35cf0e37d66aead4b1eca8ec986449170e689c",
+                "reference": "4b35cf0e37d66aead4b1eca8ec986449170e689c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.6",
+                "nikic/fast-route": "^1.3",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "gamee/php-code-checker-rules": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctor\\Rest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Janda",
+                    "email": "me@paveljanda.com"
+                }
+            ],
+            "description": "Doctor REST for implementing REST APIs",
+            "time": "2020-07-12T21:11:07+00:00"
+        },
         {
             "name": "filp/whoops",
             "version": "2.7.3",
@@ -577,16 +701,16 @@
     "packages-dev": [
         {
             "name": "gamee/php-code-checker-rules",
-            "version": "v2.0.16",
+            "version": "v2.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gameeapp/php-code-checker-rules.git",
-                "reference": "2bb9083999b038389dfe9d4325d72fb5c2c3e2ab"
+                "reference": "a79f51dfe495f237f4b39904c6fb555d3776f41f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gameeapp/php-code-checker-rules/zipball/2bb9083999b038389dfe9d4325d72fb5c2c3e2ab",
-                "reference": "2bb9083999b038389dfe9d4325d72fb5c2c3e2ab",
+                "url": "https://api.github.com/repos/gameeapp/php-code-checker-rules/zipball/a79f51dfe495f237f4b39904c6fb555d3776f41f",
+                "reference": "a79f51dfe495f237f4b39904c6fb555d3776f41f",
                 "shasum": ""
             },
             "require": {
@@ -605,7 +729,7 @@
                 "PHPStan",
                 "phpcs"
             ],
-            "time": "2020-07-01T11:55:38+00:00"
+            "time": "2020-07-12T21:06:30+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
@@ -1112,7 +1236,11 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "doctor/http": 20,
+        "doctor/rest": 20,
+        "doctor/di-psr": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

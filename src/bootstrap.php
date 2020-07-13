@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Doctor\Http\DI\Bootstrap;
+use Doctor\DI\PSR\Bootstrap;
 
 require __DIR__ . '/../vendor/autoload.php';
 
