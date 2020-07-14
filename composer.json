@@ -19,8 +19,7 @@
 	"require": {
 		"doctor/http": "dev-master",
 		"doctor/rest": "dev-master",
-		"doctor/di-psr": "dev-master",
-		"php-di/php-di": "^6.2"
+		"doctor/di-nette": "dev-master"
 	},
 	"require-dev": {
 		"gamee/php-code-checker-rules": "^2.0"

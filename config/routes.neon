@@ -1,0 +1,11 @@
+services:
+	- App\Controller\HelloWorldController
+	- App\Controller\UsersController
+	- App\Controller\UserController
+	-
+		class: Doctor\Rest\Route\RouteCollection
+		setup:
+			- add('/hello-world', App\Controller\HelloWorldController)
+			- add('/users', App\Controller\UsersController)
+			- add('/user/{id:\d+}', App\Controller\UserController)
+	- Doctor\Rest\Response\ResponseSender
