@@ -6,9 +6,7 @@ use Doctor\DI\Nette\Bootstrap;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-require __DIR__ . '/../vendor/doctor/di-nette/src/Bootstrap.php';
-
-$bootstrap = new Bootstrap(__DIR__ . '/../cache', false);
+$bootstrap = new Bootstrap(__DIR__ . '/../cache', true);
 
 $bootstrap->addConfigFile(__DIR__ . '/../config/routes.neon');
 

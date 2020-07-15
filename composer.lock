@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctorphp/di-nette.git",
-                "reference": "38b7e9840911a280c1ea295844e4ab51fcd8c842"
+                "reference": "c362a488496a042376b2e5e9a9fa7ad07d3c07f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctorphp/di-nette/zipball/38b7e9840911a280c1ea295844e4ab51fcd8c842",
-                "reference": "38b7e9840911a280c1ea295844e4ab51fcd8c842",
+                "url": "https://api.github.com/repos/doctorphp/di-nette/zipball/c362a488496a042376b2e5e9a9fa7ad07d3c07f5",
+                "reference": "c362a488496a042376b2e5e9a9fa7ad07d3c07f5",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 }
             ],
             "description": "Doctor DI with Nette\\DI implementation",
-            "time": "2020-07-14T20:58:43+00:00"
+            "time": "2020-07-15T07:56:01+00:00"
         },
         {
             "name": "doctor/http",

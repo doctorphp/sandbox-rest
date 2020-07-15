@@ -1,6 +1,6 @@
 {
 	"name": "doctor/sandbox-rest",
-	"description": "Doctor HTTP REST sandbox",
+	"description": "Doctor Framework REST sandbox",
 	"type": "project",
 	"license": "MIT",
 	"authors": [
